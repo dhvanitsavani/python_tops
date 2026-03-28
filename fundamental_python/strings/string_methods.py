@@ -12,3 +12,6 @@ print(s.count("p"))
 print(s.startswith("py"))
 print(s.endswith("le"))
 print(s.strip().split())
+
+words = ["Python", "is", "a", "programming", "language"]
+print(" ".join(words))
