@@ -1,0 +1,41 @@
+{% extends 'nav.html' %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        tr, td{
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Login</h1>
+    {% if msg %}
+        {{msg}}
+    {% endif %}
+    <form name="login" method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>Email</td>
+                <td><input type="text" name="email"></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="password" name="password"></td>
+            </tr>
+            <tr>
+                <td><a href="{% url 'forgot_password' %}" style="text-decoration: none;">Forgot Password</a></td>
+                <td><input type="submit" value="Login" class="btn btn-primary"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
+
+{% endblock %}

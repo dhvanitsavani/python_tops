@@ -1,0 +1,57 @@
+{% extends 'nav.html' %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <style>
+        tr, td{
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Update Profile</h1>
+    {% if msg %}
+        <h3>{{msg}}</h3>
+    {% endif %}
+    <form name="profile" method="post" action="{% url 'profile' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <table>
+            <tr>
+                <td>First Name</td>
+                <td><input type="text" name="fname" value="{{request.session.fname}}"></td>
+            </tr>
+            <tr>
+                <td>Last Name</td>
+                <td><input type="text" name="lname" value="{{request.session.lname}}"></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="text" name="email" value="{{request.session.email}}" readonly></td>
+            </tr>
+            <tr>
+                <td>Mobile</td>
+                <td><input type="text" name="mobile" value="{{request.session.mobile}}"></td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td><textarea rows="5" cols="22" name="address">{{request.session.address}}</textarea></td>
+            </tr>
+            <tr>
+                <td>Profile Picture</td>
+                <td><input type="file" name="profile_picture"></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" value="Update Profile" class="btn btn-primary"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
+
+{% endblock %}

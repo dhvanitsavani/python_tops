@@ -1,0 +1,57 @@
+{% extends 'nav.html' %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <style>
+        tr, td{
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Contact</h1>
+    {% if msg %}
+        <h3>{{msg}}</h3>
+    {% endif %}
+    <form name="contact" method="post" action="{% url 'contact' %}">
+        {% csrf_token %}
+
+        <table>
+            <tr>
+                <td>Name</td>
+                <td><input type="text" name="name"></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="text" name="email"></td>
+            </tr>
+            <tr>
+                <td>Mobile</td>
+                <td><input type="text" name="mobile"></td>
+            </tr>
+            <tr>
+                <td>Remarks</td>
+                <td><textarea rows="5" cols="22" name="remarks"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" value="Submit" class="btn btn-primary"></td>
+            </tr>
+        </table>
+    </form>
+    
+    <hr style="background-color: #aaa; height: 1px;">
+    <h1>Recent Contact</h1>
+    {% for i in contacts %}
+        <hr style="background-color: #aaa; height: 1px;">
+        Name : {{i.name}}<br>
+        Remarks : {{i.remarks}}
+    {% endfor %}
+</body>
+</html>
+
+{% endblock %}
