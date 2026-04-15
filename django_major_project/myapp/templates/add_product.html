@@ -1,0 +1,55 @@
+{% extends 'seller_header.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      
+   </head>
+   <body>
+      
+      <!-- contact section start -->
+      <div class="contact_section layout_padding">
+         <div class="container">
+            <div class="contact_main">
+               <h1 class="request_text">Add Product</h1>
+               <form method="post" action="{% url 'add_product' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% if msg %}
+                    <p style="font-size: 14px; color: #c33;">{{msg}}</p>
+                {% endif %}
+                  <div>
+                     <select name="product_category" class="form-group">
+                        <option value="" disabled selected>Select Product Category</option>
+                        <option value="gearless">Gearless</option>
+                        <option value="3_gears">3 Gears</option>
+                        <option value="6_gears">6 Gears</option>
+                     </select>
+                  </div>
+                  <div class="form-group" style="margin-top: 25px;">
+                     <input type="text" class="email-bt" placeholder="Name" name="product_name">
+                  </div>
+                  <div class="form-group">
+                     <input type="text" class="email-bt" placeholder="Price" name="product_price">
+                  </div>
+                  <div class="form-group" style="display: flex; flex-direction: row; justify-content: space-around;">
+                     <h3>Product Image : </h3>
+                     <input type="file" name="product_image">  
+                  </div>  
+                  <div class="form-group">
+                     <textarea class="massage-bt" placeholder="Product description" rows="5" id="comment" name="product_desc"></textarea>
+                  </div>
+                  <div class="form-group">
+                     <input type="submit" value="Add" class="submit_buttons">
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+      <!-- contact section end -->
+      
+   </body>
+</html>
+
+{% endblock %}

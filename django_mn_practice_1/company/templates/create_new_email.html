@@ -1,0 +1,45 @@
+{% extends 'navbar.html' %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Email</title>
+</head>
+<body>
+    <form name="create_email" method="post" action="{% url 'create_new_email' %}">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td colspan="2" align="center" style="padding: 0;"><h1 class="form_heading">Set Password</h1><br></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="color: #a00;">
+                    {% if msg %}
+                        {{msg}}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td>New Email</td>
+                <td><input type="text" name="new_email"></td>
+            </tr>
+            <tr>
+                <td>New Password</td>
+                <td><input type="text" name="new_password"></td>
+            </tr>
+            <tr>
+                <td>Confirm Password</td>
+                <td><input type="password" name="cnew_password"></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" value="login" class="submit_buttons"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
+
+{% endblock %}

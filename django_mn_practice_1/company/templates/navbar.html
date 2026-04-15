@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navbar Styles :- */
+        .navbar{
+            height: 60px;
+            width: 100vw;
+            background-color: #141;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar_part{
+            height: 100%;
+            width: 20%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .navbar_a{
+            font-size: 20px;
+            font-family: sans-serif;
+            letter-spacing: 0.5px;
+            color: white;
+        }
+
+        /* Form Styles :- */
+        form{
+            padding-top: 15px;
+            padding-left: 15px;
+        }
+
+        table{
+            background-color: gray;
+        }
+
+        tr, td{
+            font-size: 18px;
+            padding: 10px;
+        }
+
+        .form_heading{
+            width: 100%;
+            color: white;
+            background-color: black;
+            padding: 15px 0;
+        }
+
+        .submit_buttons{
+            height: auto;
+            color: white;
+            font-size: 18px;
+            background-color: #039;
+            padding: 10px 15px;
+            border: solid 0 black;
+            border-radius: 15px;
+        }
+
+        .submit_buttons:hover, a:hover, select:hover{
+            cursor: pointer;
+        }
+
+        /* General Styles :- */
+        a{
+            text-decoration: none;
+        }
+
+        input, select{
+            padding: 3px;
+        }
+
+        .other_a{
+            letter-spacing: 0.5px;
+            font-size: 16px;
+            color: #03b;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar_part" style="width: 25%;">
+            <a href="/" class="navbar_a">Tops Company</a>
+            <a href="/" class="navbar_a">Home</a>
+            <a href="/" class="navbar_a">Project</a>
+        </div>
+        <div class="navbar_part" style="width: 20%;">
+            <a href="/" class="navbar_a">Help</a>
+            {% if request.session.email %}
+                <a href="{% url 'logout' %}" class="navbar_a">Logout</a>
+                <a href="{% url 'edit_profile' %}"><img src="{{request.session.profile_picture}}" style="height: 40px; width: 40px; border-radius: 50%;"></a>
+            {% else %}
+                <a href="{% url 'signup' %}" class="navbar_a">Create Account</a>
+            {% endif %}
+        </div>
+    </div>    
+
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,74 @@
+{% extends 'navbar.html' %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+</head>
+<body>
+    <form name="signup" method="post" action="{% url 'signup' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <table>
+            <tr style="padding: 0;">
+                <td colspan="2" align="center" style="padding: 0;"><h1 class="form_heading">Create Account</h1><br></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="color: #a00;">
+                    {% if msg %}
+                        {{msg}}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td><input type="text" name="name"></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="text" name="email"></td>
+            </tr>
+            <tr>
+                <td>Department</td>
+                <td>
+                    <select name="department">
+                        <option value="" disabled selected>Select Department</option>
+                        <option value="frontend">Frontend</option>
+                        <option value="backend">Backend</option>
+                        <option value="designing">Designing</option>
+                        <option value="reception">Reception</option>
+                        <option value="helpline">Helpline</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Mobile</td>
+                <td><input type="number" name="mobile"></td>
+            </tr>
+            <tr>
+                <td>Profile Picture</td>
+                <td><input type="file" name="profile_picture" style="width: 200px;"></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="password" name="password"></td>
+            </tr>
+            <tr>
+                <td>Confirm Password</td>
+                <td><input type="password" name="cpassword"></td>
+            </tr>
+            <tr>
+                <td style="padding-bottom: 0;" colspan="2" align="center"><input type="submit" value="Signup" class="submit_buttons"></td>
+            </tr>
+            <tr>
+                <td style="padding-top: 0;" colspan="2" align="center"><a href="{% url 'login' %}" class="other_a">Already have an Account ?</a></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
+
+{% endblock %}

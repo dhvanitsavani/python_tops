@@ -1,0 +1,37 @@
+{% extends 'navbar.html' %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify OTP</title>
+</head>
+<body>
+    <form name="verify_otp" method="post" action="{% url 'verify_otp' %}">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td colspan="2" align="center" style="padding: 0;"><h1 class="form_heading">Verify OTP</h1><br></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="color: #a00;">
+                    {% if msg %}
+                        {{msg}}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td>OTP</td>
+                <td><input type="text" name="otp"></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" value="Verify OTP" class="submit_buttons"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
+
+{% endblock %}

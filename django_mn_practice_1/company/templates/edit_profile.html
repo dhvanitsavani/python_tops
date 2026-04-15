@@ -1,0 +1,67 @@
+{% extends 'navbar.html' %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+</head>
+<body>
+    <form name="edit_profile" method="post" action="{% url 'edit_profile' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <table>
+            <tr style="padding: 0;">
+                <td colspan="2" align="center" style="padding: 0;"><h1 class="form_heading" style="display: flex; justify-content: space-evenly; align-items: center;"><img src="{{request.session.profile_picture}}" style="height: 50px; width: 50px; border-radius: 50%;"> {{request.session.name}} </h1><br></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="color: #a00;">
+                    {% if msg %}
+                        {{msg}}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td><input type="text" name="name" value="{{request.session.name}}"></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="text" name="email" value="{{request.session.email}}" readonly></td>
+            </tr>
+            <tr>
+                <td>Department<br>({{request.session.department}})</td>
+                <td>
+                    <select name="department">
+                        <option value="">Select Department</option>
+                        <option value="frontend">Frontend</option>
+                        <option value="backend">Backend</option>
+                        <option value="designing">Designing</option>
+                        <option value="reception">Reception</option>
+                        <option value="helpline">Helpline</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Mobile</td>
+                <td><input type="number" name="mobile" value="{{request.session.mobile}}"></td>
+            </tr>
+            <tr>
+                <td>Profile Picture</td>
+                <td><input type="file" name="profile_picture" style="width: 200px;"></td>
+            </tr>
+            <tr>
+                <td align="center"><a href="{% url 'change_email' %}" class="other_a">Change Email</a></td>
+                <td align="center"><a href="{% url 'change_password' %}" class="other_a">Change Password</a></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" value="Update" class="submit_buttons"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
+
+{% endblock %}
